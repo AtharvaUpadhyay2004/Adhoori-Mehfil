@@ -286,10 +286,18 @@ export default function App() {
             ) : (
               <form
                 className="suggest-form"
-                action={`https://formsubmit.co/${SITE.suggestEmail}`}
-                method="POST"
-                onSubmit={() => { setSuggestSent(true); setShowSuggest(false) }}
-                target="_blank"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const formData = new FormData(e.target)
+                  fetch(`https://formsubmit.co/ajax/${SITE.suggestEmail}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(Object.fromEntries(formData)),
+                  })
+                    .then(r => r.json())
+                    .then(() => setSuggestSent(true))
+                    .catch(() => setSuggestSent(true))
+                }}
               >
                 <input type="hidden" name="_subject" value="New Ghazal Suggestion - Adhoori Mehfil" />
                 <input type="hidden" name="_captcha" value="false" />
