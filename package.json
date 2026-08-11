@@ -1,0 +1,21 @@
+{
+  "name": "one-page-radio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run library && vite",
+    "library": "node scripts/generate-library.mjs",
+    "build": "npm run library && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "music-metadata": "^11.14.0",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest"
+  }
+}

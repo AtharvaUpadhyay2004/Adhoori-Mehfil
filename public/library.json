@@ -1,0 +1,207 @@
+{
+  "tracks": [
+    {
+      "id": "73b338b2576b",
+      "artist": "Begum Akhtar",
+      "title": "Mere Humnafas Mere Humnava",
+      "src": "/music/ambient/Begum%20Akhtar%20-%20Mere%20Humnafas%20Mere%20Humnava.mp3",
+      "cover": ""
+    },
+    {
+      "id": "ad7b4eeb2792",
+      "artist": "Begum Akhtar",
+      "title": "Woh Jo Hum Mein Tum Mein Qarar Tha",
+      "src": "/music/ambient/Begum%20Akhtar%20-%20Woh%20Jo%20Hum%20Mein%20Tum%20Mein%20Qarar%20Tha.mp3",
+      "cover": ""
+    },
+    {
+      "id": "6b0561e3d201",
+      "artist": "Farida Khanum",
+      "title": "Aaj Jane Ki Zid Na Karo",
+      "src": "/music/ambient/Farida%20Khanum%20-%20Aaj%20Jane%20Ki%20Zid%20Na%20Karo.mp3",
+      "cover": "/covers/aa9109088154.jpg"
+    },
+    {
+      "id": "aa9109088154",
+      "artist": "Farida Khanum",
+      "title": "Dil Jalane Ki Baat",
+      "src": "/music/ambient/Farida%20Khanum%20-%20Dil%20Jalane%20Ki%20Baat.mp3",
+      "cover": "/covers/aa9109088154.jpg"
+    },
+    {
+      "id": "89772c106c76",
+      "artist": "Ghulam Ali",
+      "title": "Awargi - Yeh Dil Yeh Pagal Dil Mera",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Awargi%20-%20Yeh%20Dil%20Yeh%20Pagal%20Dil%20Mera.mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "ce2560a5d590",
+      "artist": "Ghulam Ali",
+      "title": "Chupke Chupke Raat Din",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Chupke%20Chupke%20Raat%20Din.mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "b820ce31128d",
+      "artist": "Ghulam Ali",
+      "title": "Dil Mein Ek Lehar Si Uthi Hai (Album Version)",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Dil%20Mein%20Ek%20Lehar%20Si%20Uthi%20Hai%20(Album%20Version).mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "d461c1c615c7",
+      "artist": "Ghulam Ali",
+      "title": "Hungama Hai Kyon",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Hungama%20Hai%20Kyon.mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "8b96b19646fc",
+      "artist": "Ghulam Ali",
+      "title": "Itni Muddat Baad Mile Ho",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Itni%20Muddat%20Baad%20Mile%20Ho.mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "ff76760ddc37",
+      "artist": "Ghulam Ali",
+      "title": "Kuch Din To Baso Meri Aankhon Mein",
+      "src": "/music/ambient/Ghulam%20Ali%20-%20Kuch%20Din%20To%20Baso%20Meri%20Aankhon%20Mein.mp3",
+      "cover": "/covers/d461c1c615c7.jpg"
+    },
+    {
+      "id": "15c4af1dfb74",
+      "artist": "Jagjit Singh",
+      "title": "Hothon Se Chhu Lo Tum (From Prem Geet)",
+      "src": "/music/ambient/Jagjit%20Singh%20-%20Hothon%20Se%20Chhu%20Lo%20Tum%20(From%20Prem%20Geet).mp3",
+      "cover": "/covers/6760e6c788df.jpg"
+    },
+    {
+      "id": "4641969a3885",
+      "artist": "Jagjit Singh",
+      "title": "Jhuki Jhuki Si Nazar",
+      "src": "/music/ambient/Jagjit%20Singh%20-%20Jhuki%20Jhuki%20Si%20Nazar.mp3",
+      "cover": "/covers/6760e6c788df.jpg"
+    },
+    {
+      "id": "6760e6c788df",
+      "artist": "Jagjit Singh",
+      "title": "Tum Ko Dekha To Yeh Khayal Aaya",
+      "src": "/music/ambient/Jagjit%20Singh%20-%20Tum%20Ko%20Dekha%20To%20Yeh%20Khayal%20Aaya.mp3",
+      "cover": "/covers/6760e6c788df.jpg"
+    },
+    {
+      "id": "51a1c00040d8",
+      "artist": "Jagjit Singh",
+      "title": "Woh Kaghaz Ki Kashti",
+      "src": "/music/ambient/Jagjit%20Singh%20-%20Woh%20Kaghaz%20Ki%20Kashti.mp3",
+      "cover": "/covers/6760e6c788df.jpg"
+    },
+    {
+      "id": "5a6f91be5535",
+      "artist": "Mehdi Hassan",
+      "title": "Ab Ke Hum Bichhde",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Ab%20Ke%20Hum%20Bichhde.mp3",
+      "cover": "/covers/dcc43ba37a21.jpg"
+    },
+    {
+      "id": "2343d3a64221",
+      "artist": "Mehdi Hassan",
+      "title": "Baat Karni Mujhe Mushkil",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Baat%20Karni%20Mujhe%20Mushkil.mp3",
+      "cover": "/covers/dcc43ba37a21.jpg"
+    },
+    {
+      "id": "dcc43ba37a21",
+      "artist": "Mehdi Hassan",
+      "title": "Duniya Kisi Ke Pyar Mein",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Duniya%20Kisi%20Ke%20Pyar%20Mein.mp3",
+      "cover": "/covers/dcc43ba37a21.jpg"
+    },
+    {
+      "id": "aa939ccf6ffe",
+      "artist": "Mehdi Hassan",
+      "title": "Ek Bas Tu Hi Nahin",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Ek%20Bas%20Tu%20Hi%20Nahin.mp3",
+      "cover": "/covers/aa939ccf6ffe.jpg"
+    },
+    {
+      "id": "0262fc797ffb",
+      "artist": "Mehdi Hassan",
+      "title": "Gulon Mein Rang Bhare",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Gulon%20Mein%20Rang%20Bhare.mp3",
+      "cover": "/covers/0262fc797ffb.jpg"
+    },
+    {
+      "id": "c77d9543be64",
+      "artist": "Mehdi Hassan",
+      "title": "Konpalein Phir Phoot",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Konpalein%20Phir%20Phoot.mp3",
+      "cover": "/covers/c77d9543be64.jpg"
+    },
+    {
+      "id": "be29eab046f6",
+      "artist": "Mehdi Hassan",
+      "title": "Main Khayal Hoon Kisi Aur Ka",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Main%20Khayal%20Hoon%20Kisi%20Aur%20Ka.mp3",
+      "cover": "/covers/be29eab046f6.jpg"
+    },
+    {
+      "id": "dfd95ad8a78a",
+      "artist": "Mehdi Hassan",
+      "title": "Mohabbat Karne Wale Kam Na Honge",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Mohabbat%20Karne%20Wale%20Kam%20Na%20Honge.mp3",
+      "cover": "/covers/dfd95ad8a78a.jpg"
+    },
+    {
+      "id": "001822922dde",
+      "artist": "Mehdi Hassan",
+      "title": "Mujhe Tum Nazar Se Gira Toh Rahe Ho",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Mujhe%20Tum%20Nazar%20Se%20Gira%20Toh%20Rahe%20Ho.mp3",
+      "cover": "/covers/001822922dde.jpg"
+    },
+    {
+      "id": "fb8c4fd53b5c",
+      "artist": "Mehdi Hassan",
+      "title": "Patta Patta Boota Boota Haal Hamara",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Patta%20Patta%20Boota%20Boota%20Haal%20Hamara.mp3",
+      "cover": "/covers/dcc43ba37a21.jpg"
+    },
+    {
+      "id": "07b5502ffca4",
+      "artist": "Mehdi Hassan",
+      "title": "Rafta Rafta Woh Mere",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Rafta%20Rafta%20Woh%20Mere.mp3",
+      "cover": "/covers/07b5502ffca4.jpg"
+    },
+    {
+      "id": "a9e48aeb0f04",
+      "artist": "Mehdi Hassan",
+      "title": "Ranjish Hi Sahi",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Ranjish%20Hi%20Sahi.mp3",
+      "cover": "/covers/a9e48aeb0f04.jpg"
+    },
+    {
+      "id": "1ebde690dee2",
+      "artist": "Mehdi Hassan",
+      "title": "Shola Tha Jal Bujha Hoon",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Shola%20Tha%20Jal%20Bujha%20Hoon.mp3",
+      "cover": "/covers/dcc43ba37a21.jpg"
+    },
+    {
+      "id": "449e44c6393f",
+      "artist": "Mehdi Hassan",
+      "title": "Zindagi Mein Toh Sabhi Pyar Kiya Karte Hain",
+      "src": "/music/ambient/Mehdi%20Hassan%20-%20Zindagi%20Mein%20Toh%20Sabhi%20Pyar%20Kiya%20Karte%20Hain.mp3",
+      "cover": "/covers/449e44c6393f.jpg"
+    },
+    {
+      "id": "2f5a8b71a18f",
+      "artist": "Woh Jo Hum Mein Tum",
+      "title": "Begam Akhtar",
+      "src": "/music/ambient/Woh%20Jo%20Hum%20Mein%20Tum%20-%20Begam%20Akhtar.mp3",
+      "cover": ""
+    }
+  ]
+}
