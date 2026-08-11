@@ -167,7 +167,7 @@ export default function App() {
         .catch(() => {})
     }
     sendHeartbeat()
-    const id = setInterval(sendHeartbeat, 30000)
+    const id = setInterval(sendHeartbeat, 1000)
     return () => clearInterval(id)
   }, [])
 
