@@ -33,42 +33,35 @@
       "artist": "Ghulam Ali",
       "title": "Awargi - Yeh Dil Yeh Pagal Dil Mera",
       "src": "/music/ambient/Ghulam%20Ali%20-%20Awargi%20-%20Yeh%20Dil%20Yeh%20Pagal%20Dil%20Mera.mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
+      "cover": ""
     },
     {
       "id": "ce2560a5d590",
       "artist": "Ghulam Ali",
       "title": "Chupke Chupke Raat Din",
       "src": "/music/ambient/Ghulam%20Ali%20-%20Chupke%20Chupke%20Raat%20Din.mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
+      "cover": ""
     },
     {
       "id": "b820ce31128d",
       "artist": "Ghulam Ali",
       "title": "Dil Mein Ek Lehar Si Uthi Hai (Album Version)",
       "src": "/music/ambient/Ghulam%20Ali%20-%20Dil%20Mein%20Ek%20Lehar%20Si%20Uthi%20Hai%20(Album%20Version).mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
-    },
-    {
-      "id": "d461c1c615c7",
-      "artist": "Ghulam Ali",
-      "title": "Hungama Hai Kyon",
-      "src": "/music/ambient/Ghulam%20Ali%20-%20Hungama%20Hai%20Kyon.mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
+      "cover": ""
     },
     {
       "id": "8b96b19646fc",
       "artist": "Ghulam Ali",
       "title": "Itni Muddat Baad Mile Ho",
       "src": "/music/ambient/Ghulam%20Ali%20-%20Itni%20Muddat%20Baad%20Mile%20Ho.mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
+      "cover": ""
     },
     {
       "id": "ff76760ddc37",
       "artist": "Ghulam Ali",
       "title": "Kuch Din To Baso Meri Aankhon Mein",
       "src": "/music/ambient/Ghulam%20Ali%20-%20Kuch%20Din%20To%20Baso%20Meri%20Aankhon%20Mein.mp3",
-      "cover": "/covers/d461c1c615c7.jpg"
+      "cover": ""
     },
     {
       "id": "15c4af1dfb74",
@@ -97,13 +90,6 @@
       "title": "Woh Kaghaz Ki Kashti",
       "src": "/music/ambient/Jagjit%20Singh%20-%20Woh%20Kaghaz%20Ki%20Kashti.mp3",
       "cover": "/covers/6760e6c788df.jpg"
-    },
-    {
-      "id": "5a6f91be5535",
-      "artist": "Mehdi Hassan",
-      "title": "Ab Ke Hum Bichhde",
-      "src": "/music/ambient/Mehdi%20Hassan%20-%20Ab%20Ke%20Hum%20Bichhde.mp3",
-      "cover": "/covers/dcc43ba37a21.jpg"
     },
     {
       "id": "2343d3a64221",
@@ -139,13 +125,6 @@
       "title": "Konpalein Phir Phoot",
       "src": "/music/ambient/Mehdi%20Hassan%20-%20Konpalein%20Phir%20Phoot.mp3",
       "cover": "/covers/c77d9543be64.jpg"
-    },
-    {
-      "id": "be29eab046f6",
-      "artist": "Mehdi Hassan",
-      "title": "Main Khayal Hoon Kisi Aur Ka",
-      "src": "/music/ambient/Mehdi%20Hassan%20-%20Main%20Khayal%20Hoon%20Kisi%20Aur%20Ka.mp3",
-      "cover": "/covers/be29eab046f6.jpg"
     },
     {
       "id": "dfd95ad8a78a",

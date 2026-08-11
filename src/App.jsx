@@ -152,6 +152,24 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [error, setError] = useState('')
+  const [liveCount, setLiveCount] = useState(0)
+  const sessionIdRef = useRef(crypto.randomUUID())
+
+  useEffect(() => {
+    const sendHeartbeat = () => {
+      fetch('/api/heartbeat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId: sessionIdRef.current }),
+      })
+        .then(r => r.json())
+        .then(d => { if (d.count) setLiveCount(d.count) })
+        .catch(() => {})
+    }
+    sendHeartbeat()
+    const id = setInterval(sendHeartbeat, 30000)
+    return () => clearInterval(id)
+  }, [])
 
   const track = useMemo(() => tracks[index] ?? null, [tracks, index])
 
@@ -235,6 +253,12 @@ export default function App() {
       />
 
       <div className="film-grain" />
+
+      <div className="live-indicator">
+        <span className="live-dot"><span className="live-ping" /><span className="live-dot-inner" /></span>
+        <span className="live-count">{liveCount}</span>
+        <span className="live-label">online</span>
+      </div>
 
       <nav className="links">
         <a href={SITE.spotifyUrl} target="_blank" rel="noreferrer" className="pill" aria-label="Open on Spotify">
