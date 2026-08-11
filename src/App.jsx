@@ -157,7 +157,7 @@ export default function App() {
 
   useEffect(() => {
     const sendHeartbeat = () => {
-      fetch('/api/heartbeat', {
+      fetch('https://adhoori-presence.atharva-upadhyay2144.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId: sessionIdRef.current }),

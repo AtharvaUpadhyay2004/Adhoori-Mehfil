@@ -1,0 +1,7 @@
+name = "adhoori-presence"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "PRESENCE"
+id = "81f509bd7ced411c9615d1942055415a"
