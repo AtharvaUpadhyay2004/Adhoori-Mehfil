@@ -1,9 +1,10 @@
-export async function onRequestPost({ env }) {
-  const EXPIRY = 60 // seconds to consider a session active
+export async function onRequestPost(context) {
+  const { env, request } = context
+  const EXPIRY = 60
 
   let body
   try {
-    body = await (arguments[0].request).json()
+    body = await request.json()
   } catch {
     return new Response(JSON.stringify({ count: 0 }), { status: 400 })
   }
