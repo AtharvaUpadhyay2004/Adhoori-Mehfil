@@ -8,11 +8,15 @@
   --primary: #e9c080;
   --primary-container: #b99458;
   --outline-variant: #4e453a;
+  /* a hush of dusk behind the candlelight — the sky just after the last call to prayer */
+  --dusk: #2d2a44;
+  --dusk-soft: rgba(45, 42, 68, 0.4);
   font-family: 'EB Garamond', serif;
   color: var(--on-surface);
   background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 * { box-sizing: border-box; }
@@ -22,6 +26,17 @@ body { margin: 0; min-width: 320px; background: var(--bg); }
 button, input { font: inherit; }
 a { color: inherit; }
 
+::selection {
+  background: rgba(233, 192, 128, 0.22);
+  color: var(--on-surface);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .page {
   position: relative;
   width: 100%;
@@ -29,7 +44,10 @@ a { color: inherit; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 110% 65% at 50% -10%, var(--dusk-soft), transparent 62%),
+    radial-gradient(ellipse 90% 55% at 50% 108%, rgba(185, 148, 88, 0.1), transparent 60%),
+    var(--bg);
 }
 
 .page::before {
@@ -37,17 +55,70 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   background: url('/bg.jpg') center/cover no-repeat;
-  opacity: 0.6;
+  opacity: 0.46;
+  filter: saturate(0.92) contrast(0.98) brightness(0.96);
   z-index: 0;
+  animation: bg-breathe 46s ease-in-out infinite;
+}
+
+@keyframes bg-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
 }
 
 .page::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, transparent 40%, rgba(8, 6, 4, 0.85) 90%, #080604 100%);
+  background:
+    radial-gradient(circle at 50% 44%, transparent 34%, rgba(8, 6, 4, 0.8) 90%, #080604 100%),
+    linear-gradient(180deg, rgba(8, 6, 4, 0.42) 0%, transparent 22%, transparent 74%, rgba(8, 6, 4, 0.58) 100%);
   z-index: 1;
   pointer-events: none;
+}
+
+/* A few slow motes of candlelight, drifting rather than rising — the room
+   is still, only the air is faintly moving. Pure CSS, sits behind the words. */
+.content {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 24px;
+  margin-top: -5%;
+  animation: content-in 1.6s ease both;
+}
+
+.content::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  background-image:
+    radial-gradient(1.5px 1.5px at 22% 78%, rgba(233, 192, 128, 0.8), transparent 60%),
+    radial-gradient(1px 1px at 76% 62%, rgba(233, 192, 128, 0.55), transparent 60%),
+    radial-gradient(1.5px 1.5px at 58% 85%, rgba(233, 192, 128, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 38% 58%, rgba(233, 192, 128, 0.4), transparent 60%);
+  background-repeat: no-repeat;
+  animation: motes-drift 40s ease-in-out infinite;
+}
+
+@keyframes motes-drift {
+  0%   { background-position: 22% 78%, 76% 62%, 58% 85%, 38% 58%; opacity: 0.1; }
+  50%  { background-position: 26% 40%, 70% 30%, 54% 46%, 42% 28%; opacity: 0.4; }
+  100% { background-position: 22% 78%, 76% 62%, 58% 85%, 38% 58%; opacity: 0.1; }
+}
+
+@keyframes content-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .header {
@@ -63,11 +134,14 @@ a { color: inherit; }
   font-family: 'Courier Prime', monospace;
   font-size: 11px;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--on-surface);
   opacity: 0.65;
+  transition: opacity 0.6s ease, letter-spacing 0.6s ease;
 }
+
+.brand:hover { opacity: 1; letter-spacing: 0.3em; }
 
 .live-indicator {
   position: fixed;
@@ -77,8 +151,15 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 9999px;
+  background: rgba(18, 11, 5, 0.4);
+  border: 1px solid rgba(78, 69, 58, 0.32);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   font-family: 'Courier Prime', monospace;
   font-size: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
 }
 
 .live-dot {
@@ -92,8 +173,8 @@ a { color: inherit; }
   inset: 0;
   border-radius: 50%;
   background: #4ade80;
-  opacity: 0.7;
-  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.6;
+  animation: ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .live-dot-inner {
@@ -103,6 +184,7 @@ a { color: inherit; }
   height: 8px;
   border-radius: 50%;
   background: #4ade80;
+  box-shadow: 0 0 7px rgba(74, 222, 128, 0.6);
 }
 
 @keyframes ping {
@@ -120,7 +202,7 @@ a { color: inherit; }
 
 .live-label {
   color: var(--on-surface-variant);
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 .links {
@@ -139,27 +221,31 @@ a { color: inherit; }
   gap: 6px;
   padding: 8px 16px;
   border-radius: 9999px;
-  background: rgba(233, 192, 128, 0.1);
-  border: 1px solid rgba(233, 192, 128, 0.3);
+  background: rgba(233, 192, 128, 0.07);
+  border: 1px solid rgba(233, 192, 128, 0.24);
   text-decoration: none;
   font-family: 'Courier Prime', monospace;
   font-size: 11px;
   letter-spacing: 0.15em;
   color: var(--on-surface);
-  transition: background 0.7s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  transition: background 0.5s ease, border-color 0.5s ease, transform 0.4s ease, box-shadow 0.5s ease;
 }
 
 .links .pill:hover {
-  background: rgba(233, 192, 128, 0.2);
+  background: rgba(233, 192, 128, 0.14);
+  border-color: rgba(233, 192, 128, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(233, 192, 128, 0.14);
 }
 .links .pill.disabled { opacity: .3; pointer-events: none; }
 
 .links .pill .arrow {
-  opacity: .45;
+  opacity: .4;
   rotate: -45deg;
-  transition: opacity .2s;
+  transition: opacity .4s, transform .4s;
 }
-.links .pill:hover .arrow { opacity: .85; }
+.links .pill:hover .arrow { opacity: .8; transform: translate(1px, -1px) rotate(-45deg); }
 
 /* Suggestion modal */
 .suggest-overlay {
@@ -169,20 +255,34 @@ a { color: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(5, 4, 3, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: overlay-in 0.4s ease;
+}
+
+@keyframes overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .suggest-box {
   position: relative;
   width: 380px;
   max-width: calc(100vw - 40px);
-  padding: 36px 32px;
-  border-radius: 16px;
-  background: rgba(18, 11, 5, 0.95);
-  border: 1px solid rgba(233, 192, 128, 0.2);
-  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+  padding: 38px 32px;
+  border-radius: 20px;
+  background:
+    linear-gradient(165deg, rgba(22, 15, 9, 0.97), rgba(15, 10, 6, 0.97)) padding-box,
+    linear-gradient(150deg, rgba(233, 192, 128, 0.4), rgba(45, 42, 68, 0.5) 60%, rgba(233, 192, 128, 0.12)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6), 0 0 40px rgba(185, 148, 88, 0.06);
+  animation: box-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes box-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .suggest-close {
@@ -194,27 +294,29 @@ a { color: inherit; }
   color: var(--on-surface-variant);
   font-size: 24px;
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s;
+  opacity: 0.55;
+  transition: opacity 0.4s, transform 0.4s;
 }
-.suggest-close:hover { opacity: 1; }
+.suggest-close:hover { opacity: 1; transform: rotate(90deg); }
 
 .suggest-title {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-size: 28px;
   font-weight: 500;
   color: var(--on-surface);
+  text-shadow: 0 0 20px rgba(233, 192, 128, 0.12);
 }
 
 .suggest-desc {
-  margin: 0 0 24px;
+  margin: 0 0 26px;
   font-family: 'EB Garamond', serif;
   font-style: italic;
   font-size: 15px;
+  line-height: 1.6;
   color: var(--on-surface-variant);
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 .suggest-form {
@@ -227,13 +329,13 @@ a { color: inherit; }
   width: 100%;
   padding: 12px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(233, 192, 128, 0.2);
-  background: rgba(233, 192, 128, 0.05);
+  border: 1px solid rgba(233, 192, 128, 0.18);
+  background: rgba(233, 192, 128, 0.04);
   color: var(--on-surface);
   font-family: 'EB Garamond', serif;
   font-size: 16px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .suggest-input::placeholder {
@@ -243,26 +345,31 @@ a { color: inherit; }
 
 .suggest-input:focus {
   border-color: rgba(233, 192, 128, 0.5);
+  background: rgba(233, 192, 128, 0.07);
+  box-shadow: 0 0 0 3px rgba(233, 192, 128, 0.07);
 }
 
 .suggest-submit {
   padding: 12px;
   border-radius: 9999px;
   border: none;
-  background: var(--primary-container);
+  background: linear-gradient(135deg, var(--primary-container), #a5814a);
   color: #fff;
   font-family: 'Courier Prime', monospace;
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.4s, box-shadow 0.4s, transform 0.3s;
 }
 
 .suggest-submit:hover {
-  background: var(--primary);
-  box-shadow: 0 0 20px rgba(233, 192, 128, 0.4);
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
+  box-shadow: 0 4px 22px rgba(233, 192, 128, 0.3);
+  transform: translateY(-1px);
 }
+
+.suggest-submit:active { transform: translateY(0); }
 
 .suggest-thanks {
   margin: 0;
@@ -270,45 +377,77 @@ a { color: inherit; }
   font-style: italic;
   font-size: 18px;
   color: var(--primary);
-}
-
-.content {
-  position: relative;
-  z-index: 10;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: 0 24px;
-  margin-top: -5%;
 }
 
 .mehfil {
-  margin: 0 0 16px;
+  position: relative;
+  margin: 0 0 38px;
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(48px, 5vw, 64px);
-  line-height: 1.2;
+  font-size: clamp(46px, 4.6vw, 66px);
+  line-height: 1.25;
+  letter-spacing: 0.015em;
   color: var(--on-surface);
-  text-shadow: 0 0 10px rgba(233, 192, 128, 0.3);
+  text-shadow: 0 0 30px rgba(233, 192, 128, 0.22);
+}
+
+/* a slow breath of candlelight behind the words, not on them —
+   the glow of a single flame, not a spotlight */
+.mehfil::before {
+  content: '';
+  position: absolute;
+  inset: -30% -12%;
+  z-index: -1;
+  background: radial-gradient(ellipse 55% 60% at 50% 50%, rgba(233, 192, 128, 0.16), transparent 70%);
+  animation: candle-breathe 7s ease-in-out infinite;
+}
+
+@keyframes candle-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* a single quiet mark, not a rule — like the pause after a line is read aloud */
+.mehfil::after {
+  content: '';
+  display: block;
+  width: 46px;
+  height: 1px;
+  margin: 24px auto 0;
+  background: linear-gradient(90deg, transparent, var(--primary-container), transparent);
+  opacity: 0.6;
 }
 
 .sher {
   text-align: center;
-  max-width: 560px;
+  max-width: 540px;
   width: 100%;
-  margin-top: 80px;
+  margin-top: 74px;
+  position: relative;
+}
+
+.sher::before {
+  content: '"';
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  translate: -50% 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 60px;
+  color: var(--primary);
+  opacity: 0.22;
+  line-height: 1;
 }
 
 .sher-text {
   font-family: 'EB Garamond', serif;
-  font-size: clamp(20px, 1.8vw, 24px);
+  font-size: clamp(20px, 1.7vw, 24px);
   font-weight: 400;
   font-style: italic;
-  line-height: 36px;
+  line-height: 42px;
+  letter-spacing: 0.005em;
   color: var(--on-surface-variant);
   white-space: pre-line;
   margin: 0;
@@ -317,23 +456,31 @@ a { color: inherit; }
 .sher-poet {
   font-family: 'Courier Prime', monospace;
   font-size: 11px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--primary);
   opacity: 0.8;
-  margin-top: 32px;
+  margin-top: 38px;
+}
+
+.sher-poet::before {
+  content: '— ';
+  opacity: 0.6;
 }
 
 .sher-meaning {
   font-family: 'EB Garamond', serif;
   font-size: 16px;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.7;
   color: var(--on-surface-variant);
-  opacity: 0.7;
-  margin-top: 12px;
+  opacity: 0.6;
+  margin-top: 14px;
 }
 
+/* ==========================================================
+   Player — left exactly as in the original, untouched
+   ========================================================== */
 .player {
   position: fixed;
   bottom: 40px;
@@ -512,15 +659,29 @@ input[type='range'] {
   color: #efb7aa;
   font-size: 9px;
 }
+/* ========================================================== */
 
 .film-grain {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 100;
-  opacity: 0.12;
+  opacity: 0.09;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page::before,
+  .content,
+  .content::before,
+  .mehfil::before,
+  .suggest-overlay,
+  .suggest-box,
+  .live-ping,
+  .cd.spinning {
+    animation: none !important;
+  }
 }
 
 @media (max-width: 760px) {
@@ -544,9 +705,9 @@ input[type='range'] {
   .mehfil { font-size: 40px; }
   .content { margin-top: 0; }
   .sher { margin-top: 48px; }
-  .sher-text { font-size: 18px; line-height: 1.5; }
+  .sher::before { top: -30px; font-size: 48px; }
+  .sher-text { font-size: 18px; line-height: 1.55; }
 
   .time { display: none; }
   .player { bottom: 24px; }
 }
-
