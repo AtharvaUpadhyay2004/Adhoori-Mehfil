@@ -154,6 +154,9 @@ export default function App() {
   const [error, setError] = useState('')
   const [liveCount, setLiveCount] = useState(0)
   const [liveOnline, setLiveOnline] = useState(false)
+  const [audioSrc, setAudioSrc] = useState(null)
+  const [buffering, setBuffering] = useState(false)
+  const blobUrlRef = useRef(null)
   const sessionIdRef = useRef(crypto.randomUUID())
 
   useEffect(() => {
@@ -190,7 +193,30 @@ export default function App() {
 
     setCurrentTime(0)
     setDuration(0)
-    audio.load()
+    setAudioSrc(null)
+    setBuffering(true)
+
+    // Revoke previous blob to free memory
+    if (blobUrlRef.current) {
+      URL.revokeObjectURL(blobUrlRef.current)
+      blobUrlRef.current = null
+    }
+
+    let cancelled = false
+    fetch(track.src)
+      .then(r => r.blob())
+      .then(blob => {
+        if (cancelled) return
+        const url = URL.createObjectURL(blob)
+        blobUrlRef.current = url
+        setAudioSrc(url)
+        setBuffering(false)
+      })
+      .catch(() => {
+        if (!cancelled) { setBuffering(false); setError('Could not load audio.') }
+      })
+
+    return () => { cancelled = true }
   }, [track?.id])
 
   const toggle = async () => {
@@ -243,14 +269,14 @@ export default function App() {
     <div className="page">
       <audio
         ref={audioRef}
-        src={track?.src ?? undefined}
+        src={audioSrc ?? undefined}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onCanPlay={handleCanPlay}
         onLoadedMetadata={(event) => setDuration(event.currentTarget.duration || 0)}
         onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
         onEnded={() => move(1, true)}
-        onError={() => track && setError('This audio file could not be played.')}
+        onError={() => track && !buffering && setError('This audio file could not be played.')}
       />
 
       <div className="film-grain" />
@@ -338,18 +364,18 @@ export default function App() {
 
         <div className="track-info">
           <strong>{track?.title ?? 'No music'}</strong>
-          <span className="artist">{track?.artist}</span>
+          <span className="artist">{buffering ? 'Loading…' : track?.artist}</span>
         </div>
 
         <span className="time">{formatTime(currentTime)} / {formatTime(duration)}</span>
 
-        <button onClick={() => move(-1)} disabled={!track} aria-label="Previous track">
+        <button onClick={() => move(-1)} disabled={!track || buffering} aria-label="Previous track">
           <SkipIcon direction="previous" />
         </button>
-        <button className="play" onClick={toggle} disabled={!track} aria-label={playing ? 'Pause' : 'Play'}>
+        <button className="play" onClick={toggle} disabled={!track || buffering} aria-label={playing ? 'Pause' : 'Play'}>
           <PlayIcon playing={playing} />
         </button>
-        <button onClick={() => move(1)} disabled={!track} aria-label="Next track">
+        <button onClick={() => move(1)} disabled={!track || buffering} aria-label="Next track">
           <SkipIcon direction="next" />
         </button>
 
@@ -364,7 +390,7 @@ export default function App() {
             step="0.1"
             value={Math.min(currentTime, duration || 0)}
             onChange={seek}
-            disabled={!track}
+            disabled={!track || buffering}
             aria-label="Seek"
           />
         </div>
