@@ -156,7 +156,8 @@ export default function App() {
   const [liveOnline, setLiveOnline] = useState(false)
   const [audioSrc, setAudioSrc] = useState(null)
   const [buffering, setBuffering] = useState(false)
-  const blobUrlRef = useRef(null)
+  const [loadedCount, setLoadedCount] = useState(0)
+  const blobMapRef = useRef({}) // trackId -> blob URL
   const sessionIdRef = useRef(crypto.randomUUID())
 
   useEffect(() => {
@@ -183,41 +184,50 @@ export default function App() {
         if (!response.ok) throw new Error('library missing')
         return response.json()
       })
-      .then((data) => setTracks(shuffleArr(Array.isArray(data.tracks) ? data.tracks : [])))
+      .then((data) => {
+        const shuffled = shuffleArr(Array.isArray(data.tracks) ? data.tracks : [])
+        setTracks(shuffled)
+
+        // Preload all tracks in background with max 3 parallel fetches
+        const queue = [...shuffled]
+        const worker = async () => {
+          while (queue.length > 0) {
+            const t = queue.shift()
+            if (blobMapRef.current[t.id]) continue
+            try {
+              const blob = await fetch(t.src).then(r => r.blob())
+              blobMapRef.current[t.id] = URL.createObjectURL(blob)
+              setLoadedCount(c => c + 1)
+            } catch {}
+          }
+        }
+        Promise.all([worker(), worker(), worker()])
+      })
       .catch(() => setError('Add music to public/music and restart the site.'))
   }, [])
 
+  // When track changes, use blob immediately if ready or wait
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio || !track) return
-
+    if (!track) return
     setCurrentTime(0)
     setDuration(0)
-    setAudioSrc(null)
-    setBuffering(true)
-
-    // Revoke previous blob to free memory
-    if (blobUrlRef.current) {
-      URL.revokeObjectURL(blobUrlRef.current)
-      blobUrlRef.current = null
+    if (blobMapRef.current[track.id]) {
+      setAudioSrc(blobMapRef.current[track.id])
+      setBuffering(false)
+    } else {
+      setAudioSrc(null)
+      setBuffering(true)
     }
-
-    let cancelled = false
-    fetch(track.src)
-      .then(r => r.blob())
-      .then(blob => {
-        if (cancelled) return
-        const url = URL.createObjectURL(blob)
-        blobUrlRef.current = url
-        setAudioSrc(url)
-        setBuffering(false)
-      })
-      .catch(() => {
-        if (!cancelled) { setBuffering(false); setError('Could not load audio.') }
-      })
-
-    return () => { cancelled = true }
   }, [track?.id])
+
+  // When any blob finishes loading, check if it's the current track
+  useEffect(() => {
+    if (!track || !buffering) return
+    if (blobMapRef.current[track.id]) {
+      setAudioSrc(blobMapRef.current[track.id])
+      setBuffering(false)
+    }
+  }, [loadedCount])
 
   const toggle = async () => {
     const audio = audioRef.current
