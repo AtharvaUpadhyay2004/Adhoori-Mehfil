@@ -153,6 +153,7 @@ export default function App() {
   const [duration, setDuration] = useState(0)
   const [error, setError] = useState('')
   const [liveCount, setLiveCount] = useState(0)
+  const [liveOnline, setLiveOnline] = useState(false)
   const sessionIdRef = useRef(crypto.randomUUID())
 
   useEffect(() => {
@@ -162,12 +163,12 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId: sessionIdRef.current }),
       })
-        .then(r => r.json())
-        .then(d => { if (d.count) setLiveCount(d.count) })
-        .catch(() => {})
+        .then(r => { if (!r.ok) throw new Error(); return r.json() })
+        .then(d => { if (d.count) { setLiveCount(d.count); setLiveOnline(true) } })
+        .catch(() => setLiveOnline(false))
     }
     sendHeartbeat()
-    const id = setInterval(sendHeartbeat, 1000)
+    const id = setInterval(sendHeartbeat, 30000)
     return () => clearInterval(id)
   }, [])
 
@@ -254,11 +255,13 @@ export default function App() {
 
       <div className="film-grain" />
 
-      <div className="live-indicator">
-        <span className="live-dot"><span className="live-ping" /><span className="live-dot-inner" /></span>
-        <span className="live-count">{liveCount}</span>
-        <span className="live-label">online</span>
-      </div>
+      {liveOnline && (
+        <div className="live-indicator">
+          <span className="live-dot"><span className="live-ping" /><span className="live-dot-inner" /></span>
+          <span className="live-count">{liveCount}</span>
+          <span className="live-label">online</span>
+        </div>
+      )}
 
       <nav className="links">
         <a href={SITE.spotifyUrl} target="_blank" rel="noreferrer" className="pill" aria-label="Open on Spotify">
